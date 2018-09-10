@@ -1,30 +1,3 @@
-variable "namespace" {
-  type        = "string"
-  description = "Namespace (e.g. `eg` or `cp`)"
-}
-
-variable "stage" {
-  type        = "string"
-  description = "Stage (e.g. `prod`, `dev`, `staging`, `infra`)"
-}
-
-variable "name" {
-  type        = "string"
-  description = "Name  (e.g. `app` or `cluster`)"
-}
-
-variable "attributes" {
-  type        = "list"
-  default     = []
-  description = "Additional attributes (e.g. `1`)"
-}
-
-variable "tags" {
-  type        = "map"
-  default     = {}
-  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)"
-}
-
 variable "dynamodb_table_name" {
   type        = "string"
   description = "DynamoDB table name"
