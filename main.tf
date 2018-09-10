@@ -1,7 +1,3 @@
-resource "random_id" "id" {
-  byte_length = 8
-}
-
 data "aws_iam_policy_document" "assume_role" {
   statement {
     sid = ""
@@ -21,7 +17,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 resource "aws_iam_role" "autoscaler" {
   count              = "${var.enabled == "true" ? 1 : 0}"
-  name               = "cp-autoscaler-${random_id.id.hex}"
+  name               = "${var.name}-autoscaler"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
 }
 
@@ -42,7 +38,7 @@ data "aws_iam_policy_document" "autoscaler" {
 
 resource "aws_iam_role_policy" "autoscaler" {
   count  = "${var.enabled == "true" ? 1 : 0}"
-  name   = "cp-autoscaler-dynamodb-${random_id.id.hex}"
+  name   = "${var.name}-autoscaler"
   role   = "${join("", aws_iam_role.autoscaler.*.id)}"
   policy = "${data.aws_iam_policy_document.autoscaler.json}"
 }
@@ -65,7 +61,7 @@ data "aws_iam_policy_document" "autoscaler_cloudwatch" {
 
 resource "aws_iam_role_policy" "autoscaler_cloudwatch" {
   count  = "${var.enabled == "true" ? 1 : 0}"
-  name   = "cp-autoscaler-cloudwatch-${random_id.id.hex}"
+  name   = "${var.name}-cloudwatch"
   role   = "${join("", aws_iam_role.autoscaler.*.id)}"
   policy = "${data.aws_iam_policy_document.autoscaler_cloudwatch.json}"
 }

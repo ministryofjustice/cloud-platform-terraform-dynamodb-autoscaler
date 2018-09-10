@@ -1,3 +1,8 @@
+variable "name" {
+  type        = "string"
+  description = "Name  (e.g. `app` or `cluster`)"
+}
+
 variable "dynamodb_table_name" {
   type        = "string"
   description = "DynamoDB table name"
