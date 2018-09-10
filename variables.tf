@@ -13,12 +13,6 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)"
 }
 
-variable "delimiter" {
-  type        = "string"
-  default     = "-"
-  description = "Delimiter to be used between `namespace`, `stage`, `name` and `attributes`"
-}
-
 variable "attributes" {
   type        = "list"
   default     = []
